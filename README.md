@@ -391,3 +391,120 @@ export default Menu;
 ![img](./img/navlink.png)
 
 <br>
+
+#### 라우트 in 라우트 (version 4)
+
+- src/pages/Post.js
+
+```react
+import React from 'react';
+
+const Post = ({match}) => {
+   return (
+      <div>
+         포스트 {match.params.id}
+      </div>
+   )
+}
+
+export default Post;
+```
+
+<br>
+
+- src/pages/Posts.js
+
+```react
+import React from 'react';
+import { Link, Route } from 'react-router-dom';
+import { Post } from 'pages';
+
+const Posts = ({match}) => {
+   return (
+      <div>
+         <h2>Post List</h2>
+         <ul>
+            <li><Link to={`${match.url}/1`}>Post #1</Link></li>
+            <li><Link to={`${match.url}/2`}>Post #2</Link></li>
+            <li><Link to={`${match.url}/3`}>Post #3</Link></li>
+            <li><Link to={`${match.url}/4`}>Post #4</Link></li>
+         </ul>
+         <Route exact path={match.url} render={() => (<h3>Please select any post</h3>)} />
+         <Route path={`${match.url}/:id`} component={Post} />
+      </div>
+   )
+}
+
+export default Posts;
+```
+
+<br>
+
+- src/pages/index.js
+
+```react
+export { default as Home } from './Home';
+export { default as About } from './About';
+export { default as Post } from './Post';
+export { default as Posts } from './Posts';
+```
+
+<br>
+
+- src/shared/App.js
+
+```react
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Home, About, Posts } from 'pages';
+import Menu from 'components/Menu';
+
+class App extends Component {
+   render() {
+      return (
+         <div>
+            <Menu />
+            <Route exact path="/" component={Home} />
+            <Switch>
+               <Route path="/about/:name" compoenent={About} />
+               <Route path="about" component={About} />
+            </Switch>
+            <Route path="/posts" component={Posts} />
+         </div>
+      )
+   }
+}
+
+export default App;
+```
+
+<br>
+
+- src/components/Menu.js
+
+```react
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+const Menu = () => {
+   const activeStyle = {
+      color: '#20a19c',
+      fontSize: '2rem'
+   }
+   
+   return (
+      <div>
+         <ul>
+            <li><NavLink exact to="/" activeStyle={activeStyle}>HOME</NavLink></li>
+            <li><NavLink exact to="/about" activeStyle={activeStyle}>ABOUT</NavLink></li>
+            <li><NavLink to="/about/react" activeStyle={activeStyle}>ABOUT React</NavLink></li>
+            <li><NavLink to="/posts" activeStyle={activeStyle}>Posts</NavLink></li>
+         </ul>
+      </div>
+   )
+}
+
+export default Menu;
+```
+
+<br>
