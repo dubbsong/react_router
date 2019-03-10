@@ -1,3 +1,7 @@
+###### [Velopert](https://velopert.com/3417), [리액트를 다루는 기술](https://ridibooks.com/v2/Detail?id=754024217&_s=search&_q=%EB%A6%AC%EC%95%A1%ED%8A%B8%EB%A5%BC%20%EB%8B%A4%EB%A3%A8%EB%8A%94%20%EA%B8%B0%EC%88%A0) 참조
+
+<br>
+
 #### create-react-app 생성
 
 ```bash
