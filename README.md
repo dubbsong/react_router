@@ -269,10 +269,7 @@ export default About;
 ```react
 import React from 'react';
 import { Route } from 'react-router-dom';
-import {
-   Home,
-   About
-} from 'pages';
+import { Home, About } from 'pages';
 
 const App = () => {
    return (
