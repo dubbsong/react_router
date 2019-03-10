@@ -1,13 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Menu = () => {
+  const activeStyle = {
+    color: '#20a19c',
+    fontSize: '2rem'
+  }
+
   return (
     <div>
       <ul>
-        <li><Link to="/">HOME</Link></li>
-        <li><Link to="/about">ABOUT</Link></li>
-        <li><Link to="/about/react">ABOUT React</Link></li>
+        <li><NavLink exact to="/" activeStyle={activeStyle}>HOME</NavLink></li>
+        <li><NavLink exact to="/about" activeStyle={activeStyle}>ABOUT</NavLink></li>
+        <li><NavLink to="/about/react" activeStyle={activeStyle}>ABOUT React</NavLink></li>
       </ul>
     </div>
   )
